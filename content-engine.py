@@ -31,10 +31,10 @@ def make_page(title, description, body_html, breadcrumb_link, breadcrumb_text):
 import Base from '../../layouts/Base.astro';
 ---
 
-<Base title="{esc(title)}" description="{esc(description)}">
+<Base>
 <article>
-  <p class="breadcrumb">&larr; <a href="{breadcrumb_link}">{breadcrumb_text}</a></p>
-  <h1>{title}</h1>
+  <p class="breadcrumb">&larr; <a href="{{import.meta.env.BASE_URL}}{breadcrumb_link}">{breadcrumb_text}</a></p>
+  <h1>{esc(title)}</h1>
   <div class="meta"><span>{datetime.utcnow().strftime('%B %d, %Y')}</span></div>
 
 {body_html}
@@ -208,17 +208,17 @@ def generate_articles(limit=3, dry_run=False):
         if atype == "vs":
             title = f"{tool_a} vs {tool_b}: Which is Better in 2026?"
             desc = f"Comparing {tool_a} and {tool_b} &mdash; pricing, features, pros/cons. Find the best {niche_name.lower()} for your needs."
-            breadcrumb = ("/vs/", "All VS Comparisons")
+            breadcrumb = ("vs/", "All VS Comparisons")
             body = vs_body(tool_a, tool_b, niche_name)
         elif atype == "best":
             title = f"Best {niche_name} in 2026: Top Picks for Every Use Case"
             desc = f"We tested the top {niche_name.lower()}. See our picks for every budget and use case."
-            breadcrumb = ("/best/", "All Best Picks")
+            breadcrumb = ("best/", "All Best Picks")
             body = best_body(niche_name)
         elif atype == "alternative":
             title = f"Best {tool_a} Alternatives in 2026: Top Picks"
             desc = f"Looking for {tool_a} alternatives? Compare top competitors on price, features, and value."
-            breadcrumb = ("/alternatives/", "All Alternatives")
+            breadcrumb = ("alternatives/", "All Alternatives")
             body = alt_body(tool_a, niche_name)
         else:
             continue

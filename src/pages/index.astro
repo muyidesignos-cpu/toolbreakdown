@@ -1,5 +1,5 @@
 ---
-import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL;
 
 const categories = [
   { slug: 'ai-writing', name: 'AI Writing Tools', desc: 'Jasper, Copy.ai, Writesonic & more' },
@@ -11,26 +11,52 @@ const categories = [
 ];
 ---
 
-<Base title="Honest SaaS Tool Comparisons">
-  <section class="hero">
-    <h1>Stop guessing. Start comparing.</h1>
-    <p>In-depth breakdowns of SaaS tools. No fluff. Just the data you need.</p>
-  </section>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToolBreakdown — Honest SaaS Tool Comparisons</title>
+  <meta name="description" content="In-depth breakdowns of SaaS tools. No fluff. Just the data you need." />
+  <link rel="stylesheet" href={`${base}styles/global.css`} />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href={base} class="logo">ToolBreakdown</a>
+      <div class="nav-links">
+        <a href={`${base}best/`}>Best Picks</a>
+        <a href={`${base}vs/`}>VS</a>
+        <a href={`${base}alternatives/`}>Alternatives</a>
+        <a href={`${base}blog/`}>Blog</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Stop guessing. Start comparing.</h1>
+      <p>In-depth breakdowns of SaaS tools. No fluff. Just the data you need.</p>
+    </section>
 
-  <section class="categories">
-    <h2>Explore by Category</h2>
-    <div class="category-grid">
-      {categories.map(cat => (
-        <a href={`/best/${cat.slug}/`} class="category-card">
-          <h3>{cat.name}</h3>
-          <p>{cat.desc}</p>
-        </a>
-      ))}
-    </div>
-  </section>
+    <section class="categories">
+      <h2>Explore by Category</h2>
+      <div class="category-grid">
+        {categories.map(cat => (
+          <a href={`${base}best/${cat.slug}/`} class="category-card">
+            <h3>{cat.name}</h3>
+            <p>{cat.desc}</p>
+          </a>
+        ))}
+      </div>
+    </section>
 
-  <section class="latest">
-    <h2>Latest Comparisons</h2>
-    <p>Articles coming soon — our content engine is warming up.</p>
-  </section>
-</Base>
+    <section class="latest">
+      <h2>Latest Comparisons</h2>
+      <p>Check out our <a href={`${base}vs/`}>VS Comparisons</a> — new articles daily.</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2026 ToolBreakdown &mdash; <a href={`${base}disclosure/`}>Affiliate Disclosure</a></p>
+  </footer>
+</body>
+</html>

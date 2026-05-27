@@ -21,7 +21,8 @@ out, err, rc = run("git pull origin main")
 print(f"[pull] {out}")
 
 # 2. Scan for new keywords (weekly) — skip if queue has pending items
-# 3. Generate next batch of articles
+# 3. Generate next batch of articles (keep index.astro files)
+# Note: content-engine.py generates into src/pages/{type}/, preserving existing files
 out, err, rc = run("python3 content-engine.py --limit 5")
 print(f"[generate]\n{out}")
 if rc != 0:

@@ -1,11 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://toolbreakdown.com',
+  site: 'https://muyidesignos-cpu.github.io',
+  base: '/toolbreakdown/',
   output: 'static',
-  markdown: {
-    shikiConfig: {
-      theme: 'github-dark',
-    },
-  },
 });

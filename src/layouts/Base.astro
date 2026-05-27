@@ -1,11 +1,5 @@
 ---
-export interface Props {
-  title: string;
-  description?: string;
-}
-
-const { title, description } = Astro.props;
-const fullTitle = `${title} | ToolBreakdown`;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -13,20 +7,17 @@ const fullTitle = `${title} | ToolBreakdown`;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{fullTitle}</title>
-  <meta name="description" content={description || title} />
-  <link rel="stylesheet" href="/styles/global.css" />
-  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="stylesheet" href={`${base}styles/global.css`} />
 </head>
 <body>
   <header>
     <nav>
-      <a href="/" class="logo">ToolBreakdown</a>
+      <a href={base} class="logo">ToolBreakdown</a>
       <div class="nav-links">
-        <a href="/best/">Best Picks</a>
-        <a href="/vs/">VS</a>
-        <a href="/alternatives/">Alternatives</a>
-        <a href="/blog/">Blog</a>
+        <a href={`${base}best/`}>Best Picks</a>
+        <a href={`${base}vs/`}>VS</a>
+        <a href={`${base}alternatives/`}>Alternatives</a>
+        <a href={`${base}blog/`}>Blog</a>
       </div>
     </nav>
   </header>
@@ -34,8 +25,8 @@ const fullTitle = `${title} | ToolBreakdown`;
     <slot />
   </main>
   <footer>
-    <p>© {new Date().getFullYear()} ToolBreakdown — Honest SaaS tool comparisons, updated daily.</p>
-    <p><a href="/disclosure/">Affiliate Disclosure</a></p>
+    <p>&copy; {new Date().getFullYear()} ToolBreakdown &mdash; Honest SaaS tool comparisons, updated daily.</p>
+    <p><a href={`${base}disclosure/`}>Affiliate Disclosure</a></p>
   </footer>
 </body>
 </html>
