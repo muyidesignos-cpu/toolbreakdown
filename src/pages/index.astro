@@ -42,9 +42,9 @@ const categories = [
       <h2>Explore by Category</h2>
       <div class="category-grid">
         {categories.map(cat => (
-          <a href={`${base}best/${cat.slug}/`} class="category-card">
+          <a href={`${base}vs/`} class="category-card">
             <h3>{cat.name}</h3>
-            <p>{cat.desc}</p>
+            <p>{cat.desc} — see our latest comparisons</p>
           </a>
         ))}
       </div>
