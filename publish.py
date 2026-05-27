@@ -40,11 +40,15 @@ import glob
 pages = glob.glob(os.path.join(PROJECT_ROOT, "dist/**/*.html"), recursive=True)
 print(f"[build] {len(pages)} pages generated")
 
-# 6. Git commit and push
+# 6. Git commit and push main
 out, err, rc = run("git add src/pages/ data/ && git status --short")
 if out:
     out2, err2, rc2 = run(f'git commit -m "auto: generate {len(out.splitlines())} articles" && git push origin main')
-    print(f"[push] {out2}")
+    print(f"[push main] {out2}")
+    
+    # 7. Deploy to GitHub Pages (gh-pages branch)
+    out3, err3, rc3 = run("npx --yes gh-pages -d dist -m 'auto deploy'")
+    print(f"[deploy] {out3}")
 else:
     print("[push] No changes to commit")
 
