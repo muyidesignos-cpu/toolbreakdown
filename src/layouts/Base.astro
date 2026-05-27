@@ -1,0 +1,41 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const fullTitle = `${title} | ToolBreakdown`;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description || title} />
+  <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class="logo">ToolBreakdown</a>
+      <div class="nav-links">
+        <a href="/best/">Best Picks</a>
+        <a href="/vs/">VS</a>
+        <a href="/alternatives/">Alternatives</a>
+        <a href="/blog/">Blog</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <slot />
+  </main>
+  <footer>
+    <p>© {new Date().getFullYear()} ToolBreakdown — Honest SaaS tool comparisons, updated daily.</p>
+    <p><a href="/disclosure/">Affiliate Disclosure</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+
+const categories = [
+  { slug: 'ai-writing', name: 'AI Writing Tools', desc: 'Jasper, Copy.ai, Writesonic & more' },
+  { slug: 'project-management', name: 'Project Management', desc: 'Asana, Monday, ClickUp compared' },
+  { slug: 'email-marketing', name: 'Email Marketing', desc: 'Mailchimp, ConvertKit, Beehiiv' },
+  { slug: 'vpn', name: 'VPN Services', desc: 'NordVPN, ExpressVPN, Surfshark' },
+  { slug: 'website-builders', name: 'Website Builders', desc: 'Wix, Squarespace, Webflow' },
+  { slug: 'hosting', name: 'Web Hosting', desc: 'SiteGround, Bluehost, Cloudways' },
+];
+---
+
+<Base title="Honest SaaS Tool Comparisons">
+  <section class="hero">
+    <h1>Stop guessing. Start comparing.</h1>
+    <p>In-depth breakdowns of SaaS tools. No fluff. Just the data you need.</p>
+  </section>
+
+  <section class="categories">
+    <h2>Explore by Category</h2>
+    <div class="category-grid">
+      {categories.map(cat => (
+        <a href={`/best/${cat.slug}/`} class="category-card">
+          <h3>{cat.name}</h3>
+          <p>{cat.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="latest">
+    <h2>Latest Comparisons</h2>
+    <p>Articles coming soon — our content engine is warming up.</p>
+  </section>
+</Base>
